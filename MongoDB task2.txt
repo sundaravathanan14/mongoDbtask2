@@ -1,0 +1,68 @@
+1) Find all the topics and tasks which are thought in the month of October
+
+	let data = await db.zenclass.find({date :{$gte:ISODate("2020-10-01T00:00:00Z"),$lte:ISODate("2020-10-31T00:00:00Z")}}).toArray();
+	let topics = [];
+	let tasks = [];
+	for(var i=0;i<data;i++){
+		topics.push(data[i].topic);
+		tasks,push(data[i].task):
+	}
+	res.status(200).json({topic,tasks});
+
+
+2) Find all the company drives which appeared between 15 oct-2020 and 31-oct-2020
+
+	let data = await db.zenclass.find({date :{$gte:ISODate("2020-10-15T00:00:00Z"),$lte:ISODate("2020-10-31T00:00:00Z")}}).toArray()
+
+	let company_drives = data.filter((ele)=>return ele.company_drive);
+
+	res.status(200).json({company_drives});
+
+3) Find all the company drives and students who are appeared for the placement.
+
+	let data = await db.zenclass.find({'company_drives': {$ne : ""}}).toArray();
+
+	let students = data.filter((ele)=>return ele.student);
+
+	let company_drives = data.filter((ele)=>return ele.company_drive);
+
+	res.status(200).json({company_drives,students})
+	
+
+4) Find the number of problems solved by the user in codekata
+
+	let data = await db.zenclass.find().toArray();
+
+	let userData = [];
+
+	for(var i =0;i<data.length;i++){
+		user.push({userName:codekata_count});
+	}
+
+	res.status(200).json({userData});
+
+5) Find all the mentors with who has the mentee's count more than 15
+
+	let data = await db.zenclass.find({mentee_count:{$gt:15}}).toArray();
+
+	let mentors = [];
+
+	for(var i =0;i<data.length;i++){
+		user.push(mentorName);
+	}
+
+	res.status(200).json({mentors});
+
+6) Find the number of users who are absent and task is not submitted  between 15 oct-2020 and 31-oct-2020
+
+	let data = await db.zenclass.find({date :{$gte:ISODate("2020-10-15T00:00:00Z"),$lte:ISODate("2020-10-31T00:00:00Z")}}).toArray();
+
+	let users = [];
+
+	for(var i =0;i<data.length;i++){
+		if(data[i].attendance=="absent" || data[i].taskSubmission == "not submitted")(
+			user.push(mentorName);
+		)
+	}
+
+	res.status(200).json({users});
